@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/BestelSysteem.csproj": {}
+  },
+  "projects": {
+    "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/BestelSysteem.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/BestelSysteem.csproj",
+        "projectName": "BestelSysteem",
+        "projectPath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/BestelSysteem.csproj",
+        "packagesPath": "/Users/derek/.nuget/packages/",
+        "outputPath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/derek/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "RavenDB.Client": {
+              "target": "Package",
+              "version": "[5.4.103, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
