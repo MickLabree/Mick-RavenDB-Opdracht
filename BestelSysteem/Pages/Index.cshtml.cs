@@ -1,31 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Raven.Client.Documents;
 
 namespace BestelSysteem.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly IDocumentStore _documentStore;
+    private readonly ILogger<IndexModel> _logger;
 
-    public IndexModel(IDocumentStore documentStore)
+    public IndexModel(ILogger<IndexModel> logger)
     {
-        _documentStore = documentStore;
+        _logger = logger;
     }
 
-    public async Task<IActionResult> OnGetAsync()
+    public void OnGet()
     {
-        using (var session = _documentStore.OpenAsyncSession())
-        {
-            var dog = await session.LoadAsync<Dog>("Dog");
-            if (dog == null)
-            {
-                return Content("Dog not found!");
-            }
 
-            return Content($"Dog name: {dog.Name}, breed: {dog.Breed}");
-        }
     }
 }
-
-
