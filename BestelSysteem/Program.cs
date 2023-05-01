@@ -1,4 +1,13 @@
+using Raven.Client.Documents;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add RavenDB client as a service
+builder.Services.AddSingleton<IDocumentStore>(new DocumentStore
+{
+    Urls = new[] { "http://127.0.0.1:8080/" },
+    Database = "BestelSysteem"
+}.Initialize());
 
 // Add services to the container.
 builder.Services.AddRazorPages();
