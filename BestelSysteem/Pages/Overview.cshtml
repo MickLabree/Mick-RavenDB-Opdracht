@@ -2,3 +2,34 @@
 @model MyApp.Namespace.OverviewModel
 @{
 }
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center mb-3">Producten</h1>
+            <p class="lead text-center">Thank you for visiting our website. We are dedicated to providing you with the best services possible.</p>
+            <div class="row">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-4">
+                        <div class="card shadow mb-3">
+                            <div class="card-body">
+                                <img src="https://via.placeholder.com/100" class="card-img-top" alt="Product Image">
+                                <h3 class="card-title">@product.Name</h3>
+                                <p class="card-text mb-3">@product.Description</p>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control quantity-input" value="1" min="1">
+                                </div>
+                                <p class="card-text mb-3">Stock: @product.Stock</p>
+                                <button type="button" class="btn btn-outline-dark btn-block add-to-cart-btn" data-product-id="@product.Id" data-product-name="@product.Name">Add to Orders</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

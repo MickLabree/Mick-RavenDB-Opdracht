@@ -8,6 +8,12 @@
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="col-md-6">
             <div class="card">
+                @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+                {
+                    <div class="alert alert-danger">
+                        @ViewData["ErrorMessage"]
+                    </div>
+                }
                 <div class="card-body">
                     <h2 class="card-title">Login</h2>
                     <form method="post" asp-page-handler="login">
@@ -26,6 +32,7 @@
                     <hr/>
                     <p>Don't have an account? <a href="Register" class="btn btn-link">Register here.</a></p>
                 </div>
+                
             </div>
         </div>
     </div>
