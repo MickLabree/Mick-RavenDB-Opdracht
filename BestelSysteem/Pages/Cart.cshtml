@@ -1,0 +1,43 @@
+@page
+@model BestelSysteem.Pages.Cart
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<div class="container text-center">
+    <h1>Cart</h1>
+</div>
+
+@if (Model.ItemsInCart != null && Model.ItemsInCart.Any())
+{
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ItemsInCart)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>$@item.Price</td>
+                        <td>$@(item.Price * item.Quantity)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="container text-center">
+        <p>Your cart is empty.</p>
+    </div>
+}
+ 

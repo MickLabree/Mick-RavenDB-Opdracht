@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

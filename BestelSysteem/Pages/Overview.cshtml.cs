@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BestelSysteem.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
@@ -32,7 +33,33 @@ namespace MyApp.Namespace
             }
         }
 
+        public IActionResult OnPostAddProduct(string productId, int quantity)
+        {
+            using (var session = _documentStore.OpenSession())
+            {
+                var product = session.Load<Product>(productId);
+                if (product != null)
+                {
+                    // Save the ordered product
+                    var orderedProduct = new OrderedProduct
+                    {
+                        ProductId = productId,
+                        ProductName = product.Name,
+                        Quantity = quantity,
+                        Price = product.Price,
+                        ProductTotal = quantity * product.Price
+                    };
 
+                    session.Store(orderedProduct);
+                    session.SaveChanges();
 
+                    // Redirect to a confirmation page or perform any other action
+                    return RedirectToPage("/Overview");
+                }
+            }
+
+            // If the product is not found or any error occurred, redirect back to the overview page
+            return RedirectToPage("Overview");
+        }
     }
 }
