@@ -26,14 +26,22 @@
                                     <p class="card-text mb-2 text-truncate">@product.Description</p>
                                     <p class="card-text mb-2">Price: $@product.Price</p>
                                     <p class="card-text mb-2">Stock: @product.Stock</p>
-                                    <form method="post" asp-page-handler="AddProduct">
-                                        <input type="hidden" name="ProductId" value="@product.Id" />
-                                        <input type="hidden" name="ProductName" value="@product.Name" />
-                                        <div class="input-group mb-3">
-                                            <input type="number" class="form-control" name="Quantity" value="1" min="1">
-                                        </div>
-                                        <button type="submit" class="btn btn-outline-dark btn-block">Add to Cart</button>
-                                    </form>
+                                    
+                                    @if (product.Stock > 0)
+                                    {
+                                        <form method="post" asp-page-handler="AddProduct">
+                                            <input type="hidden" name="ProductId" value="@product.Id" />
+                                            <input type="hidden" name="ProductName" value="@product.Name" />
+                                            <div class="input-group mb-3">
+                                                <input type="number" class="form-control" name="Quantity" value="1" min="1">
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-dark btn-block">Add to Cart</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <div class="text-danger">Out of Stock</div>
+                                    }
                                 </div>
                             </div>
                         </div>
