@@ -27,11 +27,17 @@
                         <td>@item.ProductName</td>
                         <td>@item.Quantity</td>
                         <td>$@item.Price</td>
-                        <td>$@(item.Price * item.Quantity)</td>
+                        <td>$@item.ProductTotal</td>
                     </tr>
                 }
             </tbody>
         </table>
+    </div>
+
+    <div class="container mt-5">
+        <div class="text-right">
+            <h3>Total: $@Model.Total</h3>
+        </div>
     </div>
 }
 else
@@ -40,4 +46,3 @@ else
         <p>Your cart is empty.</p>
     </div>
 }
- 

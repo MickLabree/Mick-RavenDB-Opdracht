@@ -9,6 +9,7 @@ namespace BestelSysteem.Pages
     public class Cart : PageModel
     {
         private readonly IDocumentStore _documentStore;
+        public decimal Total { get; set; }
 
         public Cart(IDocumentStore documentStore)
         {
@@ -26,6 +27,20 @@ namespace BestelSysteem.Pages
                 // Query the cart items and store them in the ItemsInCart property
                 ItemsInCart = session.Query<OrderedProduct>().ToList();
             }
+            Total = CalculateTotal();
         }
+
+        private decimal CalculateTotal()
+        {
+            decimal total = 0;
+
+            foreach (var product in ItemsInCart)
+            {
+                total += product.ProductTotal;
+            }
+
+            return total;
+        }
+
     }
 }

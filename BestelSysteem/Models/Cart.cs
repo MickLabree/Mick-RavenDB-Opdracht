@@ -15,9 +15,5 @@ namespace BestelSysteem.Models
             ItemsInCart = new List<OrderedProduct>();
         }
 
-        public void CalculateTotal()
-        {
-            Total = ItemsInCart.Sum(item => item.Price * item.Quantity);
-        }
     }
 }
