@@ -43,7 +43,7 @@ namespace BestelSysteem.Pages
             return total;
         }
 
-        public IActionResult OnPostRemoveProduct(string productId)
+        public IActionResult OnPostRemoveProduct(string productId, int quantity)
         {
             using (var session = _documentStore.OpenSession())
             {
@@ -54,9 +54,17 @@ namespace BestelSysteem.Pages
                 {
                     // Increment the stock counter
                     var product = session.Load<Product>(productId);
-                    session.CountersFor(product.Id).Increment("Stock", orderedProduct.Quantity);
+                    session.CountersFor(product.Id).Increment("Stock", quantity);
 
-                    session.Delete(orderedProduct);
+                    // Update the ordered product quantity and total
+                    orderedProduct.Quantity -= quantity;
+                    orderedProduct.ProductTotal = orderedProduct.Quantity * product.Price;
+
+                    if (orderedProduct.Quantity <= 0)
+                    {
+                        session.Delete(orderedProduct);
+                    }
+
                     session.SaveChanges();
                 }
             }
