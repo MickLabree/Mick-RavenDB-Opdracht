@@ -18,6 +18,7 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total</th>
+                    <th></th> <!-- Added column for removing products -->
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,11 @@
                         <td>@item.Quantity</td>
                         <td>$@item.Price</td>
                         <td>$@item.ProductTotal</td>
+                        <td>
+                            <form method="post" asp-page-handler="RemoveProduct" asp-route-productId="@item.ProductId">
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -35,9 +41,7 @@
     </div>
 
     <div class="container mt-5">
-        <div class="text-right">
-            <h3>Total: $@Model.Total</h3>
-        </div>
+        <h3>Total: $@Model.Total</h3>
     </div>
 }
 else

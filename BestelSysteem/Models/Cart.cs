@@ -8,7 +8,6 @@ namespace BestelSysteem.Models
     public class Cart
     {
         public List<OrderedProduct> ItemsInCart { get; set; }
-        public decimal Total { get; set; }
 
         public Cart()
         {

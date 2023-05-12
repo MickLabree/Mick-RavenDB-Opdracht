@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BestelSysteem.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Raven.Client.Documents;
 
@@ -41,6 +42,28 @@ namespace BestelSysteem.Pages
 
             return total;
         }
+
+        public IActionResult OnPostRemoveProduct(string productId)
+        {
+            using (var session = _documentStore.OpenSession())
+            {
+                var orderedProduct = session.Query<OrderedProduct>()
+                    .FirstOrDefault(op => op.ProductId == productId);
+
+                if (orderedProduct != null)
+                {
+                    // Increment the stock counter
+                    var product = session.Load<Product>(productId);
+                    session.CountersFor(product.Id).Increment("Stock", orderedProduct.Quantity);
+
+                    session.Delete(orderedProduct);
+                    session.SaveChanges();
+                }
+            }
+
+            return RedirectToPage("/Cart");
+        }
+
 
     }
 }

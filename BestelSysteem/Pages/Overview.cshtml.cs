@@ -40,18 +40,43 @@ namespace MyApp.Namespace
                 var product = session.Load<Product>(productId);
                 if (product != null)
                 {
-                    // Save the ordered product
-                    var orderedProduct = new OrderedProduct
-                    {
-                        ProductId = productId,
-                        ProductName = product.Name,
-                        Quantity = quantity,
-                        Price = product.Price,
-                        ProductTotal = quantity * product.Price
-                    };
+                    // Check if the product is already in the basket
+                    var orderedProduct = session.Query<OrderedProduct>()
+                        .FirstOrDefault(op => op.ProductId == productId);
 
-                    session.Store(orderedProduct);
-                    session.SaveChanges();
+                    if (orderedProduct != null)
+                    {
+                        // Product is already in the basket, update the quantity and product total
+                        orderedProduct.Quantity += quantity;
+                        orderedProduct.ProductTotal = orderedProduct.Quantity * product.Price;
+                    }
+                    else
+                    {
+                        // Product is not in the basket, create a new ordered product entry
+                        orderedProduct = new OrderedProduct
+                        {
+                            ProductId = productId,
+                            ProductName = product.Name,
+                            Quantity = quantity,
+                            Price = product.Price,
+                            ProductTotal = quantity * product.Price
+                        };
+                        session.Store(orderedProduct);
+                    }
+
+                    // Decrement the stock counter
+                    var counter = session.CountersFor(product.Id).Get("Stock");
+                    if (counter >= quantity)
+                    {
+                        session.CountersFor(product.Id).Increment("Stock", -quantity);
+                        session.SaveChanges();
+                    }
+                    else
+                    {
+                        // Not enough stock available, handle the error
+                        // For example, display an error message to the user
+                        return RedirectToPage("/Error");
+                    }
 
                     // Redirect to a confirmation page or perform any other action
                     return RedirectToPage("/Overview");
@@ -61,5 +86,6 @@ namespace MyApp.Namespace
             // If the product is not found or any error occurred, redirect back to the overview page
             return RedirectToPage("Overview");
         }
+
     }
 }
