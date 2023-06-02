@@ -18,6 +18,7 @@
                 {
                     @foreach (var product in Model.Products)
                     {
+                        var stock = product.Stock;
                         <div class="col-md-3">
                             <div class="card shadow mb-3">
                                 <div class="card-body">
@@ -33,7 +34,7 @@
                                             <input type="hidden" name="ProductId" value="@product.Id" />
                                             <input type="hidden" name="ProductName" value="@product.Name" />
                                             <div class="input-group mb-3">
-                                                <input type="number" class="form-control" name="Quantity" value="1" min="1">
+                                                <input type="number" class="form-control" name="Quantity" value="1" min="1" max="@product.Stock">
                                             </div>
                                             <button type="submit" class="btn btn-outline-dark btn-block">Add to Cart</button>
                                         </form>

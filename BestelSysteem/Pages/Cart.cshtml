@@ -18,7 +18,7 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total</th>
-                    <th></th> <!-- Added column for removing products -->
+                    <th></th> <!-- Added column for updating products -->
                 </tr>
             </thead>
             <tbody>
@@ -30,10 +30,10 @@
                         <td>$@item.Price</td>
                         <td>$@item.ProductTotal</td>
                         <td>
-                            <form method="post" asp-page-handler="RemoveProduct" asp-route-productId="@item.ProductId">
+                            <form method="post" asp-page-handler="UpdateProduct" asp-route-productId="@item.ProductId">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" name="Quantity" value="1" min="1" max="@item.Quantity" />
-                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                    <input type="number" class="form-control" name="Quantity" value="@item.Quantity" min="0" max="" />
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
                         </td>

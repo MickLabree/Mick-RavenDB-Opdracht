@@ -52,6 +52,7 @@ namespace MyApp.Namespace
                     }
                     else
                     {
+                        var stock = session.CountersFor(productId).Get("Stock");
                         // Product is not in the basket, create a new ordered product entry
                         orderedProduct = new OrderedProduct
                         {
