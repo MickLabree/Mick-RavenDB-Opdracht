@@ -32,7 +32,7 @@
                         <td>
                             <form method="post" asp-page-handler="UpdateProduct" asp-route-productId="@item.ProductId">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" name="Quantity" value="@item.Quantity" min="0" max="" />
+                                    <input type="number" class="form-control" name="Quantity" value="@item.Quantity" min="0" max="@Model.GetProductStock(item.ProductId)"/>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>

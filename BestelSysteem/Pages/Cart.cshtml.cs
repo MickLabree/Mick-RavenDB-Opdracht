@@ -67,10 +67,25 @@ namespace BestelSysteem.Pages
                 }
             }
 
-            
-
             return RedirectToPage("/Cart");
         }
+
+        public int GetProductStock(string productId)
+        {
+            var cartQuantity = ItemsInCart
+                .Where(item => item.ProductId == productId)
+                .Sum(item => item.Quantity);
+
+            using (var session = _documentStore.OpenSession())
+            {
+                var product = session.Load<Product>(productId);
+                var availableStock = session.CountersFor(product.Id).Get("Stock");
+                var maxQuantity = (int)(availableStock + cartQuantity);
+
+                return maxQuantity > 0 ? maxQuantity : 0;
+            }
+        }
+
 
 
     }

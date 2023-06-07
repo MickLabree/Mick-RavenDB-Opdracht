@@ -14,4 +14,4 @@ namespace BestelSysteem.Models
         public decimal Price { get; set; }
         public decimal ProductTotal { get; set; }
     }
-}  
+}
