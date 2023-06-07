@@ -7,10 +7,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h1 class="mb-0 text-center flex-grow-1">Producten</h1>
-                <a href="/Cart" class="btn btn-outline-dark">
-                    <i class="bi bi-cart-fill"></i>
-                </a>
+                <h1 class="mb-0 text-center flex-grow-1">Product Overview</h1>
+                <div>
+                    <a href="/Cart" class="btn btn-outline-dark">
+                        <i class="bi bi-cart-fill"></i> Cart
+                    </a>
+                    <a href="/OrderOverview" class="btn btn-outline-dark ml-2">
+                        Recent Orders
+                    </a>
+                </div>
             </div>
             <p class="lead text-center">Thank you for visiting our website. We are dedicated to providing you with the best services possible.</p>
             <div class="row">
@@ -21,8 +26,8 @@
                         var stock = product.Stock;
                         <div class="col-md-3">
                             <div class="card shadow mb-3">
+                                <img src="https://via.placeholder.com/100" class="card-img-top" alt="Product Image">
                                 <div class="card-body">
-                                    <img src="https://via.placeholder.com/100" class="card-img-top" alt="Product Image">
                                     <h3 class="card-title">@product.Name</h3>
                                     <p class="card-text mb-2 text-truncate">@product.Description</p>
                                     <p class="card-text mb-2">Price: $@product.Price</p>
@@ -35,8 +40,10 @@
                                             <input type="hidden" name="ProductName" value="@product.Name" />
                                             <div class="input-group mb-3">
                                                 <input type="number" class="form-control" name="Quantity" value="1" min="1" max="@product.Stock">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-outline-dark">Add to Cart</button>
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn btn-outline-dark btn-block">Add to Cart</button>
                                         </form>
                                     }
                                     else
@@ -50,7 +57,9 @@
                 }
                 else
                 {
-                    <div>Error</div>
+                    <div class="col-md-12 text-center">
+                        <p class="lead">Error retrieving products.</p>
+                    </div>
                 }
             </div>
         </div>

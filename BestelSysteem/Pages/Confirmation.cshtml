@@ -1,0 +1,18 @@
+@page
+@model BestelSysteem.Pages.Confirmation
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<div class="container mt-5">
+    <div class="card confirmation-card">
+        <div class="card-body">
+            <h1 class="card-title confirmation-title">@ViewData["Title"]</h1>
+            <div class="alert alert-success" role="alert">
+                Your order has been confirmed.
+            </div>
+            <p class="card-text">Thank you for your purchase!</p>
+            <a href="/Overview" class="btn btn-primary btn-block">Continue Shopping</a>
+        </div>
+    </div>
+</div>

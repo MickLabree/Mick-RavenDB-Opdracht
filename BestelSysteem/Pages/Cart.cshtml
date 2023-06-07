@@ -5,53 +5,84 @@
 }
 
 <div class="container text-center">
-    <h1>Cart</h1>
+    <h1 class="display-4">Cart</h1>
 </div>
 
 @if (Model.ItemsInCart != null && Model.ItemsInCart.Any())
 {
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th></th> <!-- Added column for updating products -->
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.ItemsInCart)
-                {
-                    <tr>
-                        <td>@item.ProductName</td>
-                        <td>@item.Quantity</td>
-                        <td>$@item.Price</td>
-                        <td>$@item.ProductTotal</td>
-                        <td>
-                            <form method="post" asp-page-handler="UpdateProduct" asp-route-productId="@item.ProductId">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="Quantity" value="@item.Quantity" min="0" max="@Model.GetProductStock(item.ProductId)"/>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col"></th> <!-- Added column for updating products -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ItemsInCart)
+                                {
+                                    <tr>
+                                        <td>@item.ProductName</td>
+                                        <td>@item.Quantity</td>
+                                        <td>$@item.Price</td>
+                                        <td>$@item.ProductTotal</td>
+                                        <td>
+                                            <form method="post" asp-page-handler="UpdateProduct" asp-route-productId="@item.ProductId">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" name="Quantity" value="@item.Quantity" min="0" max="@Model.GetProductStock(item.ProductId)" />
+                                                    <div class="input-group-append">
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Order Summary</h4>
+                        <ul class="list-group">
+                            @foreach (var item in Model.ItemsInCart)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @item.ProductName
+                                    <span>$@item.ProductTotal</span>
+                                </li>
+                            }
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white">
+                                Total
+                                <span>$@Model.Total</span>
+                            </li>
+                        </ul>
+                        <div class="text-center mt-3">
+                            <a href="/Overview" class="btn btn-primary btn-block">Continue Shopping</a>
+                            <form method="post" asp-page-handler="SaveOrder">
+                                <button type="submit" class="btn btn-success btn-block mt-3">Confirm Order</button>
                             </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
-    <div class="container mt-5">
-        <h3>Total: $@Model.Total</h3>
-        <a href="/Overview" class="btn btn-primary">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 }
 else
 {
     <div class="container text-center">
-        <p>Your cart is empty.</p>
+        <p class="lead">Your cart is empty.</p>
         <a href="/Overview" class="btn btn-primary">Continue Shopping</a>
     </div>
 }

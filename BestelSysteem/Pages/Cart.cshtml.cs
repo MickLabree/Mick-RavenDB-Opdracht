@@ -70,6 +70,37 @@ namespace BestelSysteem.Pages
             return RedirectToPage("/Cart");
         }
 
+        public IActionResult OnPostSaveOrder()
+        {
+            // Save the items in the cart to a document with timeseries data
+            using (var session = _documentStore.OpenSession())
+            {
+                // Get the items from the cart
+                var cartItems = session.Query<OrderedProduct>().ToList();
+                
+                // Create a new document to hold the cart items and timeseries data
+                var orderDocument = new OrderDocument
+                {
+                    CartItems = cartItems,
+                    Timestamp = DateTime.UtcNow
+                };
+
+                // Save the order document to the session
+                session.Store(orderDocument);
+                
+                // Delete the cart items from the session
+                foreach (var item in cartItems)
+                {
+                    session.Delete(item);
+                }
+
+                session.SaveChanges();
+            }
+
+            // Redirect to a confirmation page or any other desired page
+            return RedirectToPage("/Confirmation");
+        }
+
         public int GetProductStock(string productId)
         {
             var cartQuantity = ItemsInCart

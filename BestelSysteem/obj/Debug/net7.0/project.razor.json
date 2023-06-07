@@ -18675,6 +18675,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/Confirmation.cshtml",
+      "TargetPath": "Pages\\Confirmation.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/Privacy.cshtml",
       "TargetPath": "Pages\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -18682,6 +18687,11 @@
     {
       "FilePath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/OrderOverview.cshtml",
+      "TargetPath": "Pages\\OrderOverview.cshtml",
       "FileKind": "mvc"
     },
     {
