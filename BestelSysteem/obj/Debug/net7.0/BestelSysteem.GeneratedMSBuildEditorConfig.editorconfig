@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/OrderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvT3JkZXJEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/OrderOverview.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvT3JkZXJPdmVydmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

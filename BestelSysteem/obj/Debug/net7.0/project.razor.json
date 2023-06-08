@@ -18695,6 +18695,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/OrderDetail.cshtml",
+      "TargetPath": "Pages\\OrderDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/derek/Git/Mick-RavenDB-Opdracht/BestelSysteem/Pages/Cart.cshtml",
       "TargetPath": "Pages\\Cart.cshtml",
       "FileKind": "mvc"
